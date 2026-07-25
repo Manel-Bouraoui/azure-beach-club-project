@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#0B3C5D" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Azure Beach Club" },
+      { property: "og:site_name", content: `${siteConfig.brand.name} ${siteConfig.brand.suffix}` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -126,6 +126,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <BrandStyle />
       </head>
       <body>
         {children}
