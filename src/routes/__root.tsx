@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { BrandStyle } from "../components/site/BrandStyle";
+import { siteConfig } from "../config/site";
 
 function NotFoundComponent() {
   return (
@@ -79,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#0B3C5D" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Azure Beach Club" },
+      { property: "og:site_name", content: `${siteConfig.brand.name} ${siteConfig.brand.suffix}` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -98,17 +100,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Restaurant",
-          name: "Azure Beach Club",
-          image: "/azure-og.jpg",
+          name: `${siteConfig.brand.name} ${siteConfig.brand.suffix}`,
+          image: siteConfig.seo.ogImage,
           servesCuisine: ["Mediterranean", "Seafood"],
           priceRange: "$$$",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "1 Azure Bay",
-            addressLocality: "Mykonos",
-            addressCountry: "GR",
+            streetAddress: siteConfig.contact.address.line1,
+            addressLocality: siteConfig.contact.address.city,
+            addressCountry: siteConfig.contact.address.country,
           },
-          telephone: "+30 210 000 0000",
+          telephone: siteConfig.contact.phone,
         }),
       },
     ],
@@ -124,6 +126,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <BrandStyle />
       </head>
       <body>
         {children}

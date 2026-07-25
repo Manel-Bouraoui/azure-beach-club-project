@@ -5,21 +5,12 @@ import {
   MapPin,
   Phone,
   Clock,
-  Instagram,
-  Facebook,
-  Music2,
   MessageCircle,
   CalendarCheck,
   Star,
   ChevronRight,
   Waves,
   Sun,
-  UtensilsCrossed,
-  Wine,
-  Coffee,
-  IceCreamCone,
-  Fish,
-  GlassWater,
   Mail,
 } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
@@ -29,234 +20,34 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import heroImg from "@/assets/hero.jpg";
-import aboutImg from "@/assets/about.jpg";
-import menuSeafood from "@/assets/menu-seafood.jpg";
-import menuCocktail from "@/assets/menu-cocktail.jpg";
-import menuPasta from "@/assets/menu-pasta.jpg";
-import menuDessert from "@/assets/menu-dessert.jpg";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
-import eventDj from "@/assets/event-dj.jpg";
-import eventSunset from "@/assets/event-sunset.jpg";
-import eventWine from "@/assets/event-wine.jpg";
+import { siteConfig, socialIconMap, menuIconMap } from "@/config/site";
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Azure Beach Club — Where Luxury Meets the Sea" },
-      {
-        name: "description",
-        content:
-          "Sunset cocktails, Mediterranean seafood and beachfront reservations at Azure Beach Club — a luxury beach destination on the sea.",
-      },
-      { property: "og:title", content: "Azure Beach Club — Where Luxury Meets the Sea" },
-      {
-        property: "og:description",
-        content: "Signature cocktails, Mediterranean cuisine and unforgettable sunsets.",
-      },
+      { title: siteConfig.seo.title },
+      { name: "description", content: siteConfig.seo.description },
+      { property: "og:title", content: siteConfig.seo.ogTitle },
+      { property: "og:description", content: siteConfig.seo.ogDescription },
+      ...(siteConfig.seo.ogImage
+        ? [
+            { property: "og:image", content: siteConfig.seo.ogImage },
+            { name: "twitter:image", content: siteConfig.seo.ogImage },
+          ]
+        : []),
     ],
   }),
 });
 
-const menuCategories = [
-  { id: "seafood", label: "Seafood", icon: Fish },
-  { id: "dinner", label: "Dinner", icon: UtensilsCrossed },
-  { id: "cocktails", label: "Cocktails", icon: GlassWater },
-  { id: "wine", label: "Wine", icon: Wine },
-  { id: "breakfast", label: "Breakfast", icon: Coffee },
-  { id: "desserts", label: "Desserts", icon: IceCreamCone },
-];
-
-const menuItems: Record<
-  string,
-  { title: string; desc: string; price: string; img: string }[]
-> = {
-  seafood: [
-    {
-      title: "Grilled Octopus",
-      desc: "Aegean octopus, smoked paprika, lemon confit",
-      price: "€38",
-      img: menuSeafood,
-    },
-    {
-      title: "Oyster Selection",
-      desc: "Six seasonal oysters, mignonette, citrus caviar",
-      price: "€42",
-      img: menuSeafood,
-    },
-    {
-      title: "Whole Sea Bass",
-      desc: "Salt-crusted, wild herbs, extra virgin olive oil",
-      price: "€64",
-      img: menuSeafood,
-    },
-  ],
-  dinner: [
-    {
-      title: "Truffle Tagliolini",
-      desc: "Fresh pasta, black truffle, aged parmesan",
-      price: "€44",
-      img: menuPasta,
-    },
-    {
-      title: "Wagyu Tenderloin",
-      desc: "A5 Wagyu, charred leeks, sea salt bearnaise",
-      price: "€92",
-      img: menuPasta,
-    },
-    {
-      title: "Wild Mushroom Risotto",
-      desc: "Carnaroli, porcini, aged pecorino",
-      price: "€36",
-      img: menuPasta,
-    },
-  ],
-  cocktails: [
-    {
-      title: "Azure Sunset",
-      desc: "Mezcal, passionfruit, hibiscus, smoked salt",
-      price: "€22",
-      img: menuCocktail,
-    },
-    {
-      title: "Golden Hour",
-      desc: "Champagne, saffron, elderflower, gold leaf",
-      price: "€26",
-      img: menuCocktail,
-    },
-    {
-      title: "Tropical Breeze",
-      desc: "White rum, coconut, lime, pandan",
-      price: "€20",
-      img: menuCocktail,
-    },
-  ],
-  wine: [
-    {
-      title: "Assyrtiko Reserve",
-      desc: "Santorini, volcanic minerality, 2021",
-      price: "€120",
-      img: menuCocktail,
-    },
-    {
-      title: "Provence Rosé",
-      desc: "Whispers of peach and sea breeze, 2023",
-      price: "€95",
-      img: menuCocktail,
-    },
-    {
-      title: "Barolo Riserva",
-      desc: "Piedmont, dark cherry, leather, 2018",
-      price: "€180",
-      img: menuCocktail,
-    },
-  ],
-  breakfast: [
-    {
-      title: "Beach Benedict",
-      desc: "Poached eggs, smoked salmon, avocado, sourdough",
-      price: "€24",
-      img: menuDessert,
-    },
-    {
-      title: "Acai & Berries",
-      desc: "Superfood bowl, coconut, honeycomb",
-      price: "€18",
-      img: menuDessert,
-    },
-    {
-      title: "French Toast Brioche",
-      desc: "Vanilla cream, mascarpone, seasonal fruit",
-      price: "€22",
-      img: menuDessert,
-    },
-  ],
-  desserts: [
-    {
-      title: "Millefoglie",
-      desc: "Layered pastry, wild berries, gold leaf",
-      price: "€18",
-      img: menuDessert,
-    },
-    {
-      title: "Chocolate Sphere",
-      desc: "70% Valrhona, salted caramel, hazelnut",
-      price: "€20",
-      img: menuDessert,
-    },
-    {
-      title: "Yuzu Cheesecake",
-      desc: "Citrus curd, meringue, basil sorbet",
-      price: "€19",
-      img: menuDessert,
-    },
-  ],
-};
-
-const gallery = [
-  { src: g1, h: "h-[420px]" },
-  { src: g2, h: "h-[320px]" },
-  { src: g3, h: "h-[360px]" },
-  { src: g4, h: "h-[460px]" },
-  { src: g5, h: "h-[340px]" },
-  { src: g6, h: "h-[400px]" },
-];
-
-const events = [
-  {
-    date: "SAT · JUL 27",
-    title: "Sunset Sessions with DJ Mira",
-    desc: "A cinematic 6-hour set at the water's edge as the sky turns gold.",
-    img: eventDj,
-  },
-  {
-    date: "FRI · AUG 09",
-    title: "Golden Hour Champagne Ritual",
-    desc: "Vintage champagne, oysters, and a hosted tasting on the deck.",
-    img: eventSunset,
-  },
-  {
-    date: "SUN · AUG 18",
-    title: "Estate Wine Tasting",
-    desc: "Six terroirs paired with our chef's seasonal small plates.",
-    img: eventWine,
-  },
-];
-
-const testimonials = [
-  {
-    name: "Sofia Marchetti",
-    role: "Travel Editor, Vogue",
-    rating: 5,
-    text: "Azure isn't a restaurant — it's a slow, radiant afternoon that turns into the most beautiful night of your trip.",
-  },
-  {
-    name: "James Whitmore",
-    role: "Guest since 2019",
-    rating: 5,
-    text: "The service is telepathic and the seafood is the best I've had this side of the Mediterranean.",
-  },
-  {
-    name: "Anaïs Laurent",
-    role: "Sommelier",
-    rating: 5,
-    text: "A wine list with real soul and a sunset that makes every glass unforgettable.",
-  },
-];
-
 function useSunsetCountdown() {
+  const { hour, minute } = siteConfig.hero.sunset;
   const [remaining, setRemaining] = useState({ h: 0, m: 0, s: 0 });
   useEffect(() => {
     const tick = () => {
       const now = new Date();
       const target = new Date(now);
-      target.setHours(20, 15, 0, 0);
+      target.setHours(hour, minute, 0, 0);
       if (target.getTime() <= now.getTime()) target.setDate(target.getDate() + 1);
       const diff = target.getTime() - now.getTime();
       const h = Math.floor(diff / 3.6e6);
@@ -267,14 +58,33 @@ function useSunsetCountdown() {
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [hour, minute]);
   return remaining;
 }
 
 function Index() {
-  const [activeCat, setActiveCat] = useState("seafood");
+  const {
+    brand,
+    contact,
+    hours,
+    social,
+    hero,
+    stats,
+    about,
+    menu,
+    gallery,
+    events,
+    testimonials,
+    reservation,
+    contactSection,
+    footer,
+  } = siteConfig;
+
+  const [activeCat, setActiveCat] = useState(menu.categories[0]?.id ?? "");
   const [lightbox, setLightbox] = useState<string | null>(null);
   const sunset = useSunsetCountdown();
+  const activeItems = menu.items[activeCat] ?? [];
+  const reservationBg = gallery.items[3]?.src ?? gallery.items[0]?.src;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -283,8 +93,8 @@ function Index() {
       {/* HERO */}
       <section id="home" className="relative h-[100dvh] min-h-[720px] w-full overflow-hidden">
         <motion.img
-          src={heroImg}
-          alt="Azure Beach Club at golden hour"
+          src={hero.image}
+          alt={hero.imageAlt}
           className="absolute inset-0 h-full w-full object-cover"
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
@@ -302,7 +112,7 @@ function Index() {
             className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-white/80"
           >
             <span className="h-px w-10 bg-accent" />
-            Est. Since 2011
+            {hero.eyebrow}
             <span className="h-px w-10 bg-accent" />
           </motion.span>
 
@@ -312,8 +122,8 @@ function Index() {
             transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-[clamp(2.75rem,7vw,6rem)] font-light leading-[1.05]"
           >
-            Where Luxury <br />
-            <span className="italic text-gradient-gold">Meets the Sea</span>
+            {hero.titleLine1} <br />
+            <span className="italic text-gradient-gold">{hero.titleLine2}</span>
           </motion.h1>
 
           <motion.p
@@ -322,8 +132,7 @@ function Index() {
             transition={{ duration: 1, delay: 0.7 }}
             className="mt-6 max-w-xl text-base text-white/85 sm:text-lg"
           >
-            Unforgettable sunsets, signature cocktails, and Mediterranean cuisine served
-            steps from the turquoise sea.
+            {hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -333,20 +142,19 @@ function Index() {
             className="mt-10 flex flex-col gap-3 sm:flex-row"
           >
             <a
-              href="#reserve"
+              href={hero.primaryCta.href}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-medium tracking-wide text-accent-foreground shadow-2xl shadow-accent/30 transition hover:scale-[1.03] hover:shadow-accent/60"
             >
-              <CalendarCheck size={18} /> Reserve a Table
+              <CalendarCheck size={18} /> {hero.primaryCta.label}
             </a>
             <a
-              href="#menu"
+              href={hero.secondaryCta.href}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-8 py-4 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/10"
             >
-              Explore Menu <ChevronRight size={16} />
+              {hero.secondaryCta.label} <ChevronRight size={16} />
             </a>
           </motion.div>
 
-          {/* Sunset countdown */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -360,19 +168,14 @@ function Index() {
         </div>
       </section>
 
-      {/* INTRO STRIP */}
+      {/* STATS */}
       <section className="border-y border-border bg-secondary/40">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-10 md:grid-cols-4">
-          {[
-            { k: "13", l: "Years by the sea" },
-            { k: "48", l: "Signature cocktails" },
-            { k: "2 Star", l: "Michelin recognition" },
-            { k: "365", l: "Sunsets a year" },
-          ].map((s, i) => (
-            <Reveal key={s.l} delay={i * 0.08} className="text-center">
-              <div className="font-display text-3xl text-primary md:text-4xl">{s.k}</div>
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.08} className="text-center">
+              <div className="font-display text-3xl text-primary md:text-4xl">{s.value}</div>
               <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
-                {s.l}
+                {s.label}
               </div>
             </Reveal>
           ))}
@@ -382,18 +185,15 @@ function Index() {
       {/* MENU */}
       <section id="menu" className="mx-auto max-w-7xl px-6 py-28">
         <Reveal className="text-center">
-          <span className="text-xs uppercase tracking-[0.35em] text-accent">La Carte</span>
-          <h2 className="mt-3 font-display text-4xl md:text-6xl">A Taste of the Coast</h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Mediterranean plates, fire-kissed seafood and cocktails crafted the moment the
-            sun begins to soften.
-          </p>
+          <span className="text-xs uppercase tracking-[0.35em] text-accent">{menu.eyebrow}</span>
+          <h2 className="mt-3 font-display text-4xl md:text-6xl">{menu.title}</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">{menu.intro}</p>
         </Reveal>
 
         <Reveal delay={0.1} className="mt-12">
           <div className="flex flex-wrap justify-center gap-2">
-            {menuCategories.map((c) => {
-              const Icon = c.icon;
+            {menu.categories.map((c) => {
+              const Icon = menuIconMap[c.icon];
               const active = activeCat === c.id;
               return (
                 <button
@@ -413,7 +213,7 @@ function Index() {
         </Reveal>
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {menuItems[activeCat].map((item, i) => (
+          {activeItems.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.1}>
               <article className="group overflow-hidden rounded-3xl bg-card shadow-sm ring-1 ring-border transition hover:shadow-2xl hover:shadow-primary/10">
                 <div className="overflow-hidden">
@@ -429,9 +229,7 @@ function Index() {
                     <h3 className="font-display text-2xl">{item.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
                   </div>
-                  <span className="shrink-0 font-display text-xl text-accent">
-                    {item.price}
-                  </span>
+                  <span className="shrink-0 font-display text-xl text-accent">{item.price}</span>
                 </div>
               </article>
             </Reveal>
@@ -440,47 +238,31 @@ function Index() {
       </section>
 
       {/* ABOUT */}
-      <section
-        id="about"
-        className="relative overflow-hidden bg-primary text-primary-foreground"
-      >
+      <section id="about" className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-28 md:grid-cols-2">
           <Reveal>
             <img
-              src={aboutImg}
-              alt="Azure Beach Club dining terrace"
+              src={about.image}
+              alt={about.imageAlt}
               loading="lazy"
               className="h-[600px] w-full rounded-3xl object-cover shadow-2xl"
             />
           </Reveal>
           <Reveal delay={0.15}>
-            <span className="text-xs uppercase tracking-[0.35em] text-accent">
-              Our Story
-            </span>
+            <span className="text-xs uppercase tracking-[0.35em] text-accent">{about.eyebrow}</span>
             <h2 className="mt-3 font-display text-4xl md:text-5xl">
-              A Sanctuary Between <span className="italic">Sand & Stars</span>
+              {about.titleLine1} <span className="italic">{about.titleLineItalic}</span>
             </h2>
-            <p className="mt-6 text-primary-foreground/80">
-              For over a decade, Azure has been a refuge for those who chase the last
-              light of day. Our chefs source directly from Aegean fishermen and local
-              farms, our sommeliers curate cellars from small European estates, and our
-              hosts remember your name.
-            </p>
-            <p className="mt-4 text-primary-foreground/80">
-              Whether it's a private dinner beneath the pergola or an all-night beach
-              session, every hour at Azure is designed to feel effortlessly ours.
-            </p>
+            {about.paragraphs.map((p, i) => (
+              <p key={i} className={i === 0 ? "mt-6 text-primary-foreground/80" : "mt-4 text-primary-foreground/80"}>
+                {p}
+              </p>
+            ))}
             <div className="mt-10 grid grid-cols-3 gap-6">
-              {[
-                { k: "Chef", v: "Elena Voss" },
-                { k: "Cuisine", v: "Mediterranean" },
-                { k: "Dress", v: "Elegant Casual" },
-              ].map((v) => (
-                <div key={v.k}>
-                  <div className="text-xs uppercase tracking-widest text-accent">
-                    {v.k}
-                  </div>
-                  <div className="mt-1 font-display text-lg">{v.v}</div>
+              {about.facts.map((v) => (
+                <div key={v.key}>
+                  <div className="text-xs uppercase tracking-widest text-accent">{v.key}</div>
+                  <div className="mt-1 font-display text-lg">{v.value}</div>
                 </div>
               ))}
             </div>
@@ -491,13 +273,11 @@ function Index() {
       {/* GALLERY */}
       <section id="gallery" className="mx-auto max-w-7xl px-6 py-28">
         <Reveal className="text-center">
-          <span className="text-xs uppercase tracking-[0.35em] text-accent">Gallery</span>
-          <h2 className="mt-3 font-display text-4xl md:text-6xl">
-            Moments by the Water
-          </h2>
+          <span className="text-xs uppercase tracking-[0.35em] text-accent">{gallery.eyebrow}</span>
+          <h2 className="mt-3 font-display text-4xl md:text-6xl">{gallery.title}</h2>
         </Reveal>
         <div className="mt-14 columns-1 gap-6 sm:columns-2 lg:columns-3 [column-fill:_balance]">
-          {gallery.map((g, i) => (
+          {gallery.items.map((g, i) => (
             <Reveal key={i} delay={i * 0.05}>
               <button
                 onClick={() => setLightbox(g.src)}
@@ -505,9 +285,9 @@ function Index() {
               >
                 <img
                   src={g.src}
-                  alt=""
+                  alt={g.alt ?? ""}
                   loading="lazy"
-                  className={`${g.h} w-full object-cover transition-transform duration-[1200ms] hover:scale-110`}
+                  className={`${g.height} w-full object-cover transition-transform duration-[1200ms] hover:scale-110`}
                 />
               </button>
             </Reveal>
@@ -520,15 +300,8 @@ function Index() {
           onClick={() => setLightbox(null)}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-6 backdrop-blur-xl"
         >
-          <img
-            src={lightbox}
-            alt="Gallery view"
-            className="max-h-[90dvh] max-w-6xl rounded-2xl object-contain shadow-2xl"
-          />
-          <button
-            aria-label="Close"
-            className="absolute right-6 top-6 rounded-full bg-white/10 p-3 text-white hover:bg-white/20"
-          >
+          <img src={lightbox} alt="Gallery view" className="max-h-[90dvh] max-w-6xl rounded-2xl object-contain shadow-2xl" />
+          <button aria-label="Close" className="absolute right-6 top-6 rounded-full bg-white/10 p-3 text-white hover:bg-white/20">
             <X size={22} />
           </button>
         </div>
@@ -538,14 +311,12 @@ function Index() {
       <section id="events" className="bg-secondary/40 py-28">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <span className="text-xs uppercase tracking-[0.35em] text-accent">
-              What's On
-            </span>
-            <h2 className="mt-3 font-display text-4xl md:text-6xl">Upcoming Evenings</h2>
+            <span className="text-xs uppercase tracking-[0.35em] text-accent">{events.eyebrow}</span>
+            <h2 className="mt-3 font-display text-4xl md:text-6xl">{events.title}</h2>
           </Reveal>
 
           <div className="mt-14 grid gap-8 md:grid-cols-3">
-            {events.map((e, i) => (
+            {events.items.map((e, i) => (
               <Reveal key={e.title} delay={i * 0.1}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-card shadow-sm ring-1 ring-border">
                   <div className="relative h-56 overflow-hidden">
@@ -579,13 +350,11 @@ function Index() {
       {/* TESTIMONIALS */}
       <section className="mx-auto max-w-7xl px-6 py-28">
         <Reveal className="text-center">
-          <span className="text-xs uppercase tracking-[0.35em] text-accent">
-            Kind Words
-          </span>
-          <h2 className="mt-3 font-display text-4xl md:text-6xl">Guest Impressions</h2>
+          <span className="text-xs uppercase tracking-[0.35em] text-accent">{testimonials.eyebrow}</span>
+          <h2 className="mt-3 font-display text-4xl md:text-6xl">{testimonials.title}</h2>
         </Reveal>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
+          {testimonials.items.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.1}>
               <div className="flex h-full flex-col rounded-3xl bg-card p-8 ring-1 ring-border">
                 <div className="flex gap-1 text-accent">
@@ -593,14 +362,10 @@ function Index() {
                     <Star key={k} size={16} fill="currentColor" />
                   ))}
                 </div>
-                <p className="mt-6 font-display text-xl leading-snug text-foreground/90">
-                  "{t.text}"
-                </p>
+                <p className="mt-6 font-display text-xl leading-snug text-foreground/90">"{t.text}"</p>
                 <div className="mt-8 border-t border-border pt-4">
                   <div className="font-medium">{t.name}</div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                    {t.role}
-                  </div>
+                  <div className="text-xs uppercase tracking-widest text-muted-foreground">{t.role}</div>
                 </div>
               </div>
             </Reveal>
@@ -609,39 +374,29 @@ function Index() {
       </section>
 
       {/* RESERVATION */}
-      <section
-        id="reserve"
-        className="relative overflow-hidden bg-primary text-primary-foreground"
-      >
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url(${g4})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+      <section id="reserve" className="relative overflow-hidden bg-primary text-primary-foreground">
+        {reservationBg && (
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{ backgroundImage: `url(${reservationBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
+          />
+        )}
         <div className="relative mx-auto grid max-w-7xl gap-14 px-6 py-28 md:grid-cols-2">
           <Reveal>
-            <span className="text-xs uppercase tracking-[0.35em] text-accent">
-              Reservations
-            </span>
+            <span className="text-xs uppercase tracking-[0.35em] text-accent">{reservation.eyebrow}</span>
             <h2 className="mt-3 font-display text-4xl md:text-6xl">
-              Reserve Your <span className="italic">Sunset</span>
+              {reservation.titleLine1} <span className="italic">{reservation.titleLineItalic}</span>
             </h2>
-            <p className="mt-6 max-w-md text-primary-foreground/80">
-              Tables are limited. We recommend booking two weeks in advance for weekend
-              seatings and sunset hours.
-            </p>
+            <p className="mt-6 max-w-md text-primary-foreground/80">{reservation.description}</p>
             <ul className="mt-10 space-y-4 text-primary-foreground/85">
               <li className="flex items-center gap-3">
-                <Clock size={18} className="text-accent" /> Open daily · 10:00 – 02:00
+                <Clock size={18} className="text-accent" /> {hours.label}
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={18} className="text-accent" /> +30 210 000 0000
+                <Phone size={18} className="text-accent" /> {contact.phone}
               </li>
               <li className="flex items-center gap-3">
-                <MapPin size={18} className="text-accent" /> 1 Azure Bay, Mykonos, GR
+                <MapPin size={18} className="text-accent" /> {contact.address.full}
               </li>
             </ul>
           </Reveal>
@@ -650,7 +405,7 @@ function Index() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                alert("Thank you — we'll confirm your reservation shortly.");
+                alert(reservation.successMessage);
               }}
               className="rounded-3xl bg-card p-8 text-foreground shadow-2xl ring-1 ring-border"
             >
@@ -669,7 +424,7 @@ function Index() {
                 </div>
                 <div>
                   <Label htmlFor="guests">Guests</Label>
-                  <Input id="guests" type="number" min={1} defaultValue={2} className="mt-2" />
+                  <Input id="guests" type="number" min={1} defaultValue={reservation.defaultGuests} className="mt-2" />
                 </div>
                 <div>
                   <Label htmlFor="date">Date</Label>
@@ -677,17 +432,14 @@ function Index() {
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="time">Time</Label>
-                  <Input id="time" type="time" defaultValue="20:00" className="mt-2" />
+                  <Input id="time" type="time" defaultValue={reservation.defaultTime} className="mt-2" />
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="notes">Special requests</Label>
                   <Textarea id="notes" rows={3} className="mt-2" />
                 </div>
               </div>
-              <Button
-                type="submit"
-                className="mt-6 w-full rounded-full bg-accent py-6 text-accent-foreground hover:bg-accent/90"
-              >
+              <Button type="submit" className="mt-6 w-full rounded-full bg-accent py-6 text-accent-foreground hover:bg-accent/90">
                 Confirm Reservation
               </Button>
             </form>
@@ -699,54 +451,36 @@ function Index() {
       <section id="contact" className="mx-auto max-w-7xl px-6 py-28">
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal>
-            <span className="text-xs uppercase tracking-[0.35em] text-accent">
-              Find Us
-            </span>
-            <h2 className="mt-3 font-display text-4xl md:text-5xl">On the Shoreline</h2>
-            <p className="mt-4 max-w-md text-muted-foreground">
-              A short drive from the harbor, tucked between the cliffs and the open sea.
-            </p>
+            <span className="text-xs uppercase tracking-[0.35em] text-accent">{contactSection.eyebrow}</span>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl">{contactSection.title}</h2>
+            <p className="mt-4 max-w-md text-muted-foreground">{contactSection.intro}</p>
             <div className="mt-10 space-y-6">
               <div className="flex items-start gap-4">
-                <div className="rounded-full bg-secondary p-3 text-primary">
-                  <MapPin size={18} />
-                </div>
+                <div className="rounded-full bg-secondary p-3 text-primary"><MapPin size={18} /></div>
                 <div>
                   <div className="font-medium">Address</div>
-                  <div className="text-sm text-muted-foreground">
-                    1 Azure Bay, Mykonos 84600, Greece
-                  </div>
+                  <div className="text-sm text-muted-foreground">{contact.address.full}</div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="rounded-full bg-secondary p-3 text-primary">
-                  <Clock size={18} />
-                </div>
+                <div className="rounded-full bg-secondary p-3 text-primary"><Clock size={18} /></div>
                 <div>
                   <div className="font-medium">Opening Hours</div>
-                  <div className="text-sm text-muted-foreground">
-                    Mon – Sun · 10:00 – 02:00
-                  </div>
+                  <div className="text-sm text-muted-foreground">{hours.detail}</div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="rounded-full bg-secondary p-3 text-primary">
-                  <Phone size={18} />
-                </div>
+                <div className="rounded-full bg-secondary p-3 text-primary"><Phone size={18} /></div>
                 <div>
                   <div className="font-medium">Reservations</div>
-                  <div className="text-sm text-muted-foreground">+30 210 000 0000</div>
+                  <div className="text-sm text-muted-foreground">{contact.phone}</div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="rounded-full bg-secondary p-3 text-primary">
-                  <Waves size={18} />
-                </div>
+                <div className="rounded-full bg-secondary p-3 text-primary"><Waves size={18} /></div>
                 <div>
                   <div className="font-medium">Parking & Valet</div>
-                  <div className="text-sm text-muted-foreground">
-                    Complimentary valet from 18:00
-                  </div>
+                  <div className="text-sm text-muted-foreground">{contact.parkingNote}</div>
                 </div>
               </div>
             </div>
@@ -754,8 +488,8 @@ function Index() {
           <Reveal delay={0.15}>
             <div className="h-[520px] overflow-hidden rounded-3xl ring-1 ring-border">
               <iframe
-                title="Azure Beach Club location"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=25.32%2C37.44%2C25.36%2C37.46&layer=mapnik"
+                title={`${brand.name} ${brand.suffix} location`}
+                src={contact.mapEmbedUrl}
                 className="h-full w-full"
                 loading="lazy"
               />
@@ -768,90 +502,74 @@ function Index() {
       <footer className="border-t border-border bg-secondary/40 pt-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-16 md:grid-cols-4">
           <div>
-            <div className="font-display text-2xl">Azure</div>
-            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              Beach Club
-            </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              A luxury beachfront restaurant crafted for slow days and unforgettable
-              nights.
-            </p>
+            <div className="font-display text-2xl">{brand.name}</div>
+            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{brand.suffix}</div>
+            <p className="mt-4 text-sm text-muted-foreground">{footer.description}</p>
           </div>
           <div>
             <div className="text-sm font-semibold">Visit</div>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li>1 Azure Bay, Mykonos</li>
-              <li>Daily · 10:00 – 02:00</li>
-              <li>+30 210 000 0000</li>
+              <li>{contact.address.full}</li>
+              <li>{hours.detail}</li>
+              <li>{contact.phone}</li>
+              <li>{contact.email}</li>
             </ul>
           </div>
+          {footer.columns.map((col) => (
+            <div key={col.title}>
+              <div className="text-sm font-semibold">{col.title}</div>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                {col.links.map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} className="hover:text-accent">{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
           <div>
-            <div className="text-sm font-semibold">Explore</div>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#menu" className="hover:text-accent">
-                  Menu
-                </a>
-              </li>
-              <li>
-                <a href="#events" className="hover:text-accent">
-                  Events
-                </a>
-              </li>
-              <li>
-                <a href="#reserve" className="hover:text-accent">
-                  Reservations
-                </a>
-              </li>
-              <li>
-                <a href="#gallery" className="hover:text-accent">
-                  Gallery
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="text-sm font-semibold">Newsletter</div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Sunset invitations, new menus and private events.
-            </p>
+            <div className="text-sm font-semibold">{footer.newsletter.title}</div>
+            <p className="mt-4 text-sm text-muted-foreground">{footer.newsletter.description}</p>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                alert("Subscribed. À bientôt.");
+                alert(footer.newsletter.successMessage);
               }}
               className="mt-4 flex gap-2"
             >
-              <Input type="email" required placeholder="you@sea.com" />
+              <Input type="email" required placeholder={footer.newsletter.placeholder} />
               <Button type="submit" size="icon" className="bg-primary text-primary-foreground">
                 <Mail size={16} />
               </Button>
             </form>
             <div className="mt-6 flex gap-3">
-              {[Instagram, Facebook, Music2].map((I, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="social"
-                  className="rounded-full border border-border p-2 text-foreground/70 transition hover:border-accent hover:text-accent"
-                >
-                  <I size={16} />
-                </a>
-              ))}
+              {social.map((s) => {
+                const Icon = socialIconMap[s.icon];
+                return (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    className="rounded-full border border-border p-2 text-foreground/70 transition hover:border-accent hover:text-accent"
+                  >
+                    <Icon size={16} />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
         <div className="border-t border-border py-6">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 text-xs text-muted-foreground sm:flex-row">
-            <div>© {new Date().getFullYear()} Azure Beach Club. All rights reserved.</div>
-            <div>Crafted with love by the sea.</div>
+            <div>© {new Date().getFullYear()} {brand.name} {brand.suffix}. All rights reserved.</div>
+            <div>{footer.tagline}</div>
           </div>
         </div>
       </footer>
 
       {/* FLOATING ACTIONS */}
       <a
-        href="https://wa.me/302100000000"
+        href={contact.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp"
@@ -860,7 +578,7 @@ function Index() {
         <MessageCircle size={22} />
       </a>
       <a
-        href="#reserve"
+        href={hero.primaryCta.href}
         className="fixed bottom-6 right-6 z-40 hidden md:inline-flex items-center gap-2 rounded-full bg-accent px-6 py-4 text-sm font-medium text-accent-foreground shadow-xl shadow-accent/30 transition hover:scale-105"
       >
         <CalendarCheck size={16} /> Reserve

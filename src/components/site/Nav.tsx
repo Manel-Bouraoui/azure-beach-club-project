@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const links = [
-  { label: "Home", href: "#home" },
-  { label: "Menu", href: "#menu" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Events", href: "#events" },
-  { label: "About", href: "#about" },
-  { label: "Reserve", href: "#reserve" },
-  { label: "Contact", href: "#contact" },
-];
+import { siteConfig } from "@/config/site";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { brand, nav, hero } = siteConfig;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -32,26 +24,32 @@ export function Nav() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6">
         <a href="#home" className="flex items-center gap-2 group">
-          <span
-            className={cn(
-              "font-display text-2xl tracking-wide transition-colors",
-              scrolled ? "text-foreground" : "text-white",
-            )}
-          >
-            Azure
-          </span>
-          <span
-            className={cn(
-              "text-xs uppercase tracking-[0.3em] transition-colors",
-              scrolled ? "text-muted-foreground" : "text-white/70",
-            )}
-          >
-            Beach Club
-          </span>
+          {brand.logoUrl ? (
+            <img src={brand.logoUrl} alt={`${brand.name} ${brand.suffix}`} className="h-8 w-auto" />
+          ) : (
+            <>
+              <span
+                className={cn(
+                  "font-display text-2xl tracking-wide transition-colors",
+                  scrolled ? "text-foreground" : "text-white",
+                )}
+              >
+                {brand.name}
+              </span>
+              <span
+                className={cn(
+                  "text-xs uppercase tracking-[0.3em] transition-colors",
+                  scrolled ? "text-muted-foreground" : "text-white/70",
+                )}
+              >
+                {brand.suffix}
+              </span>
+            </>
+          )}
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
+          {nav.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
@@ -61,14 +59,13 @@ export function Nav() {
                 )}
               >
                 {l.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
               </a>
             </li>
           ))}
         </ul>
 
         <a
-          href="#reserve"
+          href={hero.primaryCta.href}
           className="hidden md:inline-flex items-center rounded-full border border-accent/60 bg-accent/10 px-5 py-2 text-sm font-medium text-accent backdrop-blur-md transition hover:bg-accent hover:text-accent-foreground"
         >
           Reserve
@@ -89,7 +86,7 @@ export function Nav() {
       {open && (
         <div className="md:hidden mx-4 mt-3 rounded-2xl glass-solid p-6 animate-in fade-in slide-in-from-top-2">
           <ul className="flex flex-col gap-4">
-            {links.map((l) => (
+            {nav.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
