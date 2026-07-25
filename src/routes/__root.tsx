@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { BrandStyle } from "../components/site/BrandStyle";
+import { siteConfig } from "../config/site";
 
 function NotFoundComponent() {
   return (
@@ -98,17 +100,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Restaurant",
-          name: "Azure Beach Club",
-          image: "/azure-og.jpg",
+          name: `${siteConfig.brand.name} ${siteConfig.brand.suffix}`,
+          image: siteConfig.seo.ogImage,
           servesCuisine: ["Mediterranean", "Seafood"],
           priceRange: "$$$",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "1 Azure Bay",
-            addressLocality: "Mykonos",
-            addressCountry: "GR",
+            streetAddress: siteConfig.contact.address.line1,
+            addressLocality: siteConfig.contact.address.city,
+            addressCountry: siteConfig.contact.address.country,
           },
-          telephone: "+30 210 000 0000",
+          telephone: siteConfig.contact.phone,
         }),
       },
     ],
