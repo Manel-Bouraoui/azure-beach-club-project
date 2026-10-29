@@ -1,498 +1,81 @@
-# Azure Beach Club Project
-
-You are an award-winning UI/UX designer and senior full-stack web developer.
-
-Build a modern, luxury, responsive website for a high-end beach bar restaurant called "Azure Beach Club".
-
-The website should feel like a premium destination in Mykonos, Ibiza, Dubai, or the Maldives.
-
-The design must immediately communicate:
-
-- Luxury
-
-- Relaxation
-
-- Sunset vibes
-
-- Tropical atmosphere
-
-- Modern elegance
-
-- Premium dining
-
-- Exclusive beach experience
-
-==================================================
-
-TECH STACK
-
-==================================================
-
-Use:
-
-- Next.js (latest App Router)
-
-- TypeScript
-
-- Tailwind CSS
-
-- shadcn/ui
-
-- Framer Motion
-
-- Lucide Icons
-
-The code should be clean, reusable, component-based, and production-ready.
-
-Follow modern React best practices.
-
-==================================================
-
-STYLE
-
-==================================================
-
-Minimalistic.
-
-Elegant.
-
-Premium.
-
-Large spacing.
-
-Rounded corners.
-
-Soft shadows.
-
-Glassmorphism where appropriate.
-
-Smooth animations.
-
-Modern typography.
-
-Beautiful gradients.
-
-Use subtle animations instead of flashy effects.
-
-The website should look like it belongs to a luxury resort.
-
-==================================================
-
-COLOR PALETTE
-
-==================================================
-
-Primary:
-
-Deep Ocean Blue (#0B3C5D)
-
-Secondary:
-
-Turquoise (#2EC4B6)
-
-Accent:
-
-Warm Gold (#D4AF37)
-
-Background:
-
-White
-
-Sand Beige
-
-Light Gray
-
-==================================================
-
-TYPOGRAPHY
-
-==================================================
-
-Elegant luxury fonts.
-
-Large hero titles.
-
-Beautiful spacing.
-
-Readable paragraphs.
-
-==================================================
-
-HOMEPAGE
-
-==================================================
-
-Create a stunning full-screen hero section.
-
-Background:
-
-A cinematic looping beach video or large hero image.
-
-Overlay:
-
-Dark transparent gradient.
-
-Headline:
-
-"Where Luxury Meets the Sea"
-
-Subheadline:
-
-Experience unforgettable sunsets,
-
-signature cocktails,
-
-fresh Mediterranean cuisine,
-
-and beachfront relaxation.
-
-Buttons:
-
-Reserve a Table
-
-Explore Menu
-
-Animate the hero text.
-
-==================================================
-
-NAVIGATION
-
-==================================================
-
-Sticky transparent navbar.
-
-Logo
-
-Home
-
-Menu
-
-Gallery
-
-Events
-
-Reservations
-
-About
-
-Contact
-
-When scrolling:
-
-Navbar becomes solid.
-
-Smooth scrolling.
-
-==================================================
-
-MENU SECTION
-
-==================================================
-
-Beautiful cards.
-
-Categories:
-
-Breakfast
-
-Lunch
-
-Dinner
-
-Seafood
-
-Cocktails
-
-Wine
-
-Desserts
-
-Each item contains:
-
-Image
-
-Title
-
-Description
-
-Price
-
-Hover animations.
-
-==================================================
-
-GALLERY
-
-==================================================
-
-Pinterest-style masonry layout.
-
-Large luxury photography.
-
-Hover zoom.
-
-Lightbox.
-
-==================================================
-
-EVENTS
-
-==================================================
-
-Upcoming Events
-
-Live DJ
-
-Sunset Party
-
-Beach BBQ
-
-Wine Tasting
-
-Cards with date, image and CTA.
-
-==================================================
-
-ABOUT
-
-==================================================
-
-Large images.
-
-Story of the restaurant.
-
-Luxury atmosphere.
-
-Professional chef.
-
-Fresh local ingredients.
-
-==================================================
-
-RESERVATION
-
-==================================================
-
-Beautiful reservation form.
-
-Fields:
-
-Name
-
-Phone
-
-Email
-
-Guests
-
-Date
-
-Time
-
-Special Requests
-
-Reserve button.
-
-==================================================
-
-GOOGLE MAP
-
-==================================================
-
-Embedded Google Maps.
-
-Opening Hours.
-
-Parking.
-
-Phone.
-
-WhatsApp button.
-
-==================================================
-
-TESTIMONIALS
-
-==================================================
-
-Elegant review cards.
-
-Customer avatars.
-
-5-star ratings.
-
-Smooth slider.
-
-==================================================
-
-FOOTER
-
-==================================================
-
-Newsletter
-
-Instagram
-
-Facebook
-
-TikTok
-
-Contact
-
-Address
-
-Opening Hours
-
-==================================================
-
-ANIMATIONS
-
-==================================================
-
-Use Framer Motion.
-
-Fade-up animations.
-
-Image reveal.
-
-Parallax.
-
-Smooth page transitions.
-
-Buttons should feel premium.
-
-==================================================
-
-RESPONSIVE
-
-==================================================
-
-Perfect on:
-
-Desktop
-
-Tablet
-
-Mobile
-
-==================================================
-
-SEO
-
-==================================================
-
-Optimize everything.
-
-Meta Title
-
-Meta Description
-
-OpenGraph
-
-Twitter Cards
-
-Schema.org Restaurant
-
-Fast loading
-
-Lazy images
-
-Next/Image
-
-==================================================
-
-ACCESSIBILITY
-
-==================================================
-
-Proper semantic HTML.
-
-ARIA labels.
-
-Keyboard navigation.
-
-High contrast.
-
-==================================================
-
-EXTRA PREMIUM FEATURES
-
-==================================================
-
-Floating WhatsApp button.
-
-Floating Reserve button.
-
-Instagram feed section.
-
-Google Reviews section.
-
-Chef recommendations.
-
-Signature cocktails carousel.
-
-Daily specials.
-
-Sunset countdown timer.
-
-Weather widget.
-
-Beach conditions widget.
-
-Music playlist section.
-
-Luxury loading screen.
-
-Dark mode.
-
-==================================================
-
-ADMIN READY
-
-==================================================
-
-Structure the code so it can later connect to:
-
-Supabase
-
-Firebase
-
-Strapi
-
-or any CMS.
-
-Menu, events and gallery should be easily editable.
-
-==================================================
-
-FINAL RESULT
-
-==================================================
-
-The final website should feel comparable to the websites of luxury beach clubs in Ibiza, Mykonos, Dubai, or the Maldives.
-
-Every section should feel polished, modern, elegant, and worthy of winning a design award.
-
-Prioritize visual excellence, smooth user experience, and high conversion for reservations.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/702e2ef5-d6af-4f30-b161-0e7e3e498d81).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+# 🌊 Azure Beach Club
+
+A modern, luxury, fully responsive website for a high-end beach bar & restaurant, built as a **reusable, config-driven template**: rebrand the entire site for any venue by editing a single file.
+
+![React](https://img.shields.io/badge/React%2019-20232A?style=flat&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![TanStack Start](https://img.shields.io/badge/TanStack%20Start-FF4154?style=flat&logo=reactquery&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS%204-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+
+---
+
+## ✨ Features
+
+- **Single-file configuration**: brand name, colors, fonts, contact info, opening hours, menu, gallery, events, testimonials, SEO and footer all live in [`src/config/site.ts`](src/config/site.ts). No component edits needed to rebrand.
+- **Full-screen hero** with a live **"next sunset" countdown**
+- **Menu** with categories and featured dishes
+- **About, Gallery, Events & Testimonials** sections
+- **Reservation form** (name, phone, email, guests, date, time, notes) with required-field validation and a confirmation message
+- **Contact section** with address, hours and social links
+- **Scroll-reveal animations** powered by Motion
+- **SEO-ready**: meta tags plus a generated `sitemap.xml` route
+- **Mobile-first, responsive layout** with a sticky navigation bar
+
+## 🛠️ Tech stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | React 19 + [TanStack Start](https://tanstack.com/start) (file-based routing, SSR) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4 + shadcn/ui components |
+| Animation | Motion |
+| Icons | Lucide |
+| Tooling | Vite, ESLint, Prettier, Bun |
+
+## 🚀 Getting started
+
+```bash
+# install dependencies
+bun install        # or: npm install
+
+# start the dev server
+bun run dev        # or: npm run dev
+
+# production build
+bun run build
+bun run preview
 ```
+
+## 🎨 Rebranding the template
+
+1. Open [`src/config/site.ts`](src/config/site.ts).
+2. Change the brand, contact details, menu items, events and SEO values.
+3. Replace the images in [`src/assets/`](src/assets/) (keep the same file names, or update the imports in `site.ts`).
+
+That's it. Every section reads from the config, so the whole site updates automatically.
+
+## 📁 Project structure
+
+```
+src/
+├── config/site.ts        # all site content & branding
+├── routes/
+│   ├── __root.tsx        # HTML shell, fonts, meta
+│   ├── index.tsx         # home page (all sections)
+│   └── sitemap[.]xml.ts  # generated sitemap
+├── components/
+│   ├── site/             # Nav, Reveal animation, brand styles
+│   └── ui/               # shadcn/ui primitives
+└── assets/               # images
+```
+
+## 📝 Notes
+
+- Contact details in the config are placeholders.
+- The reservation form is front-end only; connect it to an API or email service for production use.
+- Bootstrapped with [Lovable](https://lovable.dev), then customized and turned into a reusable template.
+
+---
+
+Built by [Manel Bouraoui](https://github.com/Manel-Bouraoui)
